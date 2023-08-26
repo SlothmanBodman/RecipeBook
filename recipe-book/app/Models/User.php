@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Recipe;
+use App\Models\Ingredient;
 
 class User extends Authenticatable
 {
@@ -42,4 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function recipes() :HasMany 
+    {
+        $this->hasMany(Recipe::class); 
+    }
+
+    public function ingredients() :HasMany
+    {
+        $this->hasMany(Ingredient::class);
+    }
 }
